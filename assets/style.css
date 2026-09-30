@@ -4,44 +4,57 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* --- 1. Global Typography & Canvas Reset --- */
-html, body, [class*="css"], [class*="st-"] {
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif !important;
+/* --- 1. Global Typography & Core Reset --- */
+html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove default Streamlit input shortcut helper ("Press Enter to apply") */
+/* Preserve icon font rendering */
+[data-testid="stIcon"],
+.material-symbols-rounded,
+.material-icons,
+[class*="material-symbols"] {
+    font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif;
+}
+
+/* Remove default input helper hints */
 [data-testid="InputInstructions"] {
+    display: none !important;
+}
+
+/* Clean up unnecessary header elements */
+.stDeployButton,
+header[data-testid="stHeader"] .stDeployButton {
     display: none !important;
 }
 
 /* --- 2. Surface Card Container --- */
 .surface-card {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(128, 128, 128, 0.16);
     border-radius: 12px;
     padding: 20px 24px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     margin-bottom: 20px;
 }
 
-/* --- 3. Key-Value Row Items --- */
+/* --- 3. Key-Value Row Items (Active Preferences Box) --- */
 .setting-list-container {
-    border: 1px solid rgba(128, 128, 128, 0.14);
-    border-radius: 12px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 14px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.025);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .setting-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
     transition: background 0.15s ease-in-out;
 }
 
@@ -50,22 +63,26 @@ html, body, [class*="css"], [class*="st-"] {
 }
 
 .setting-row:hover {
-    background: rgba(128, 128, 128, 0.05);
+    background: rgba(128, 128, 128, 0.06);
 }
 
 .setting-key {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    opacity: 0.95;
 }
 
 .setting-value {
-    font-size: 0.92rem;
-    font-weight: 500;
-    opacity: 0.75;
-    background: rgba(128, 128, 128, 0.08);
-    padding: 4px 10px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(128, 128, 128, 0.12);
+    padding: 6px 14px;
     border-radius: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.12);
 }
 
 /* --- 4. Empty State Presentation --- */
@@ -84,13 +101,13 @@ html, body, [class*="css"], [class*="st-"] {
 }
 
 .empty-state-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     margin-bottom: 6px;
 }
 
 .empty-state-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     opacity: 0.65;
     margin-bottom: 16px;
 }
@@ -98,69 +115,102 @@ html, body, [class*="css"], [class*="st-"] {
 /* --- 5. Segmented Navigation Tabs --- */
 [data-testid="stTabs"] {
     background: rgba(128, 128, 128, 0.08);
-    padding: 4px;
+    padding: 5px;
     border-radius: 10px;
     gap: 4px;
+    border-bottom: none !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    gap: 4px !important;
+    background-color: transparent !important;
+    border-bottom: none !important;
 }
 
 [data-testid="stTabs"] button[data-baseweb="tab"] {
     border-radius: 8px !important;
     border: none !important;
-    font-weight: 500 !important;
-    font-size: 0.9rem !important;
-    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    font-size: 0.90rem !important;
+    padding: 10px 20px !important;
+    min-height: 42px !important;
     color: inherit !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     background: transparent !important;
 }
 
 [data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
-    background: #007AFF !important;
+    background: rgba(255, 255, 255, 0.14) !important;
     color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Hide Streamlit default tab underline highlight */
-[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+/* Remove default highlight line */
+[data-testid="stTabs"] [data-baseweb="tab-highlight"],
+[data-testid="stTabs"] [data-baseweb="tab-border"] {
     display: none !important;
 }
 
-/* --- 6. Form Controls & Buttons --- */
-div[data-testid="stTextInput"] input {
+/* --- 6. Form Controls & Action Buttons --- */
+div[data-testid="stTextInput"] input,
+div[data-testid="stSelectbox"] > div {
     border-radius: 8px !important;
     border: 1px solid rgba(128, 128, 128, 0.2) !important;
-    padding: 10px 14px !important;
     font-size: 0.95rem !important;
     transition: all 0.2s ease;
 }
 
-div[data-testid="stTextInput"] input:focus {
-    border-color: #007AFF !important;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.25) !important;
-}
-
-div[data-testid="stFormSubmitButton"] button {
+div[data-testid="stFormSubmitButton"] button,
+.stButton button,
+[data-testid="stPopover"] button {
     border-radius: 8px !important;
-    padding: 8px 18px !important;
-    font-weight: 600 !important;
-    border: none !important;
+    font-weight: 500 !important;
+    min-height: 42px !important;
     transition: transform 0.1s ease, background-color 0.2s ease !important;
 }
 
-div[data-testid="stFormSubmitButton"] button:active {
+div[data-testid="stFormSubmitButton"] button:active,
+.stButton button:active {
     transform: scale(0.98);
 }
 
-/* --- 7. Toast & Alert Notifications --- */
+/* --- 7. Popover Modal Flyout --- */
+[data-testid="stPopoverBody"] {
+    border-radius: 14px !important;
+    border: 1px solid rgba(128, 128, 128, 0.22) !important;
+    padding: 20px !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35) !important;
+    backdrop-filter: blur(16px);
+}
+
+/* Compact dropzone inside popover */
+[data-testid="stFileUploaderDropzone"] {
+    padding: 14px !important;
+    min-height: unset !important;
+    border-radius: 10px !important;
+    border: 1px dashed rgba(128, 128, 128, 0.25) !important;
+    background: rgba(128, 128, 128, 0.03) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: rgba(128, 128, 128, 0.45) !important;
+    background: rgba(128, 128, 128, 0.06) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] small {
+    display: none !important;
+}
+
+/* --- 8. Notification Banners --- */
 [data-testid="stAlert"] {
     border-radius: 10px !important;
     border: 1px solid rgba(128, 128, 128, 0.15) !important;
     padding: 12px 18px !important;
-    backdrop-filter: blur(8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* --- 8. Responsive Design & Mobile Breakpoints --- */
+/* --- 9. Responsive Mobile Breakpoints --- */
 @media (max-width: 768px) {
     .surface-card {
         padding: 16px;
@@ -168,18 +218,26 @@ div[data-testid="stFormSubmitButton"] button:active {
     }
 
     .setting-row {
-        padding: 12px 14px;
+        padding: 14px 16px;
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
     }
 
+    .setting-key {
+        font-size: 0.80rem;
+        letter-spacing: 0.05em;
+    }
+
     .setting-value {
         align-self: flex-start;
+        font-size: 0.78rem;
+        padding: 4px 10px;
     }
 
     [data-testid="stTabs"] button[data-baseweb="tab"] {
-        padding: 6px 10px !important;
+        padding: 8px 12px !important;
         font-size: 0.82rem !important;
+        min-height: 40px !important;
     }
 }
