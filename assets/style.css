@@ -1,14 +1,27 @@
 /* ==========================================================================
    Modern Responsive Design System for Streamlit
+   Aesthetic Theme: Palette A (Neutral Titanium & Monochrome)
+   Typography: Plus Jakarta Sans + JetBrains Mono
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* --- 1. Global Typography & Core Reset --- */
+/* --- 1. Global Canvas, Typography & Clean Surface --- */
 html, body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.stApp {
+    background: #121214 !important;
+    color: #F4F4F5 !important;
+}
+
+/* Eliminate Streamlit top decoration line */
+div[data-testid="stDecoration"],
+[data-testid="stDecoration"] {
+    display: none !important;
 }
 
 /* Preserve icon font rendering */
@@ -16,7 +29,7 @@ html, body {
 .material-symbols-rounded,
 .material-icons,
 [class*="material-symbols"] {
-    font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif;
+    font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif !important;
 }
 
 /* Remove default input helper hints */
@@ -24,29 +37,161 @@ html, body {
     display: none !important;
 }
 
-/* Clean up unnecessary header elements */
+/* Clean up default header elements */
 .stDeployButton,
 header[data-testid="stHeader"] .stDeployButton {
     display: none !important;
 }
 
-/* --- 2. Surface Card Container --- */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+/* Page title formatting */
+h1 {
+    letter-spacing: -0.01em !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+}
+
+/* --- 2. Understated Metric Counters Strip --- */
+.metric-strip {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    gap: 32px;
+    padding: 14px 24px;
+    background: rgba(28, 28, 32, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.metric-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.metric-stat:not(:last-child) {
+    padding-right: 32px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #A1A1AA;
+}
+
+.metric-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+/* --- 3. Profile Navigation Pills & Inline Action Chip --- */
+div[data-testid="stPills"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+div[data-testid="stPills"] button {
+    border-radius: 20px !important;
+    font-weight: 500 !important;
+    font-size: 0.88rem !important;
+    transition: all 0.15s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(28, 28, 32, 0.7) !important;
+    color: #A1A1AA !important;
+    outline: none !important;
+}
+
+div[data-testid="stPills"] button:hover {
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    color: #FFFFFF !important;
+}
+
+/* Active Profile Pill (Soft Platinum & Dark Text) */
+div[data-testid="stPills"] button[aria-checked="true"],
+div[data-testid="stPills"] button[aria-selected="true"],
+div[data-testid="stPills"] button[data-checked="true"] {
+    background: #E4E4E7 !important;
+    border: 1px solid #E4E4E7 !important;
+    border-color: #E4E4E7 !important;
+    color: #18181B !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Defeat default red border/outline on active and focused pills */
+div[data-testid="stPills"] button:focus,
+div[data-testid="stPills"] button:active,
+div[data-testid="stPills"] button:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Inline Action Chip (+ New Profile) */
+div[data-testid="stPills"] button:last-child {
+    border: 1px dashed rgba(255, 255, 255, 0.3) !important;
+    background: rgba(28, 28, 32, 0.35) !important;
+    color: #A1A1AA !important;
+    font-weight: 500 !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+}
+
+div[data-testid="stPills"] button:last-child:hover {
+    border: 1px dashed rgba(255, 255, 255, 0.6) !important;
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Keep action chip distinct even when momentarily triggered */
+div[data-testid="stPills"] button:last-child[aria-checked="true"],
+div[data-testid="stPills"] button:last-child[data-checked="true"],
+div[data-testid="stPills"] button:last-child:focus,
+div[data-testid="stPills"] button:last-child:active {
+    background: rgba(28, 28, 32, 0.5) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #FFFFFF !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+div[data-testid="stPills"] button:last-child * {
+    color: inherit !important;
+}
+
+/* --- 4. Surface Card Container --- */
 .surface-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(128, 128, 128, 0.16);
+    background: rgba(24, 24, 27, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 20px 24px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     margin-bottom: 20px;
 }
 
-/* --- 3. Key-Value Row Items (Active Preferences Box) --- */
+/* --- 5. Key-Value Row Items (Active Settings Box) --- */
 .setting-list-container {
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.025);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    background: rgba(24, 24, 27, 0.75);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .setting-row {
@@ -54,7 +199,7 @@ header[data-testid="stHeader"] .stDeployButton {
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     transition: background 0.15s ease-in-out;
 }
 
@@ -63,7 +208,7 @@ header[data-testid="stHeader"] .stDeployButton {
 }
 
 .setting-row:hover {
-    background: rgba(128, 128, 128, 0.06);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .setting-key {
@@ -71,27 +216,61 @@ header[data-testid="stHeader"] .stDeployButton {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    opacity: 0.95;
+    color: #E4E4E7;
 }
 
 .setting-value {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.84rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    background: rgba(128, 128, 128, 0.12);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    background: rgba(39, 39, 42, 0.8);
+    color: #F4F4F5;
     padding: 6px 14px;
     border-radius: 6px;
-    border: 1px solid rgba(128, 128, 128, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* --- 4. Empty State Presentation --- */
+/* Color Swatch Badges */
+.color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+/* Status Dot Indicators */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.status-dot.enabled {
+    background-color: #E4E4E7;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+.status-dot.disabled {
+    background-color: #52525B;
+}
+
+/* --- 6. Empty State Presentation --- */
 .empty-state-box {
     text-align: center;
     padding: 40px 20px;
-    border: 1px dashed rgba(128, 128, 128, 0.25);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(24, 24, 27, 0.4);
 }
 
 .empty-state-icon {
@@ -103,20 +282,22 @@ header[data-testid="stHeader"] .stDeployButton {
 .empty-state-title {
     font-size: 1.05rem;
     font-weight: 600;
+    color: #E4E4E7;
     margin-bottom: 6px;
 }
 
 .empty-state-subtitle {
     font-size: 0.88rem;
-    opacity: 0.65;
+    color: #71717A;
     margin-bottom: 16px;
 }
 
-/* --- 5. Segmented Navigation Tabs --- */
+/* --- 7. Segmented Navigation Tabs --- */
 [data-testid="stTabs"] {
-    background: rgba(128, 128, 128, 0.08);
-    padding: 5px;
-    border-radius: 10px;
+    background: rgba(24, 24, 27, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 5px !important;
+    border-radius: 10px !important;
     gap: 4px;
     border-bottom: none !important;
 }
@@ -127,91 +308,190 @@ header[data-testid="stHeader"] .stDeployButton {
     border-bottom: none !important;
 }
 
-[data-testid="stTabs"] button[data-baseweb="tab"] {
-    border-radius: 8px !important;
-    border: none !important;
-    font-weight: 600 !important;
-    font-size: 0.90rem !important;
-    padding: 10px 20px !important;
-    min-height: 42px !important;
-    color: inherit !important;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    background: transparent !important;
-}
-
-[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
-    background: rgba(255, 255, 255, 0.14) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Remove default highlight line */
 [data-testid="stTabs"] [data-baseweb="tab-highlight"],
 [data-testid="stTabs"] [data-baseweb="tab-border"] {
     display: none !important;
 }
 
-/* --- 6. Form Controls & Action Buttons --- */
-div[data-testid="stTextInput"] input,
-div[data-testid="stSelectbox"] > div {
+[data-testid="stTabs"] button[data-baseweb="tab"] {
     border-radius: 8px !important;
-    border: 1px solid rgba(128, 128, 128, 0.2) !important;
-    font-size: 0.95rem !important;
-    transition: all 0.2s ease;
+    border: none !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    padding: 10px 20px !important;
+    min-height: 42px !important;
+    color: #A1A1AA !important;
+    transition: all 0.15s ease !important;
+    background: transparent !important;
 }
 
+[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* --- 8. Form Controls & Action Buttons --- */
+div[data-testid="stTextInput"] div[data-baseweb="base-input"],
+div[data-testid="stTextInput"] div[data-baseweb="input"],
+div[data-testid="stSelectbox"] > div {
+    background-color: rgba(24, 24, 27, 0.8) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    font-size: 0.95rem !important;
+    color: #F4F4F5 !important;
+    transition: all 0.15s ease;
+}
+
+div[data-testid="stTextInput"] input {
+    color: #F4F4F5 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+div[data-testid="stTextInput"] div[data-baseweb="input"]:focus-within,
+div[data-testid="stTextInput"] div[data-baseweb="base-input"]:focus-within,
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stSelectbox"] > div:focus-within {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12) !important;
+    outline: none !important;
+}
+
+/* Checkbox Checked Indicator */
+div[data-testid="stCheckbox"] svg {
+    fill: none !important;
+    stroke: #18181B !important;
+    color: #18181B !important;
+}
+
+div[data-testid="stCheckbox"] svg polyline,
+div[data-testid="stCheckbox"] svg path {
+    fill: none !important;
+    stroke: #18181B !important;
+    stroke-width: 2px !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+/* Primary Action Buttons (Soft Platinum) */
 div[data-testid="stFormSubmitButton"] button,
+.stButton button[kind="primary"],
+button[kind="primary"] {
+    background: #E4E4E7 !important;
+    color: #18181B !important;
+    border: 1px solid #E4E4E7 !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+    min-height: 42px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 0.1s ease, background 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+div[data-testid="stFormSubmitButton"] button:hover,
+.stButton button[kind="primary"]:hover,
+button[kind="primary"]:hover {
+    background: #F4F4F5 !important;
+    border-color: #F4F4F5 !important;
+    color: #18181B !important;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Secondary & Popover Buttons */
 .stButton button,
 [data-testid="stPopover"] button {
     border-radius: 8px !important;
     font-weight: 500 !important;
     min-height: 42px !important;
-    transition: transform 0.1s ease, background-color 0.2s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(24, 24, 27, 0.7) !important;
+    color: #E4E4E7 !important;
+    transition: transform 0.1s ease, background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.stButton button:hover,
+[data-testid="stPopover"] button:hover {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #FFFFFF !important;
 }
 
 div[data-testid="stFormSubmitButton"] button:active,
 .stButton button:active {
-    transform: scale(0.98);
+    transform: scale(0.98) !important;
 }
 
-/* --- 7. Popover Modal Flyout --- */
-[data-testid="stPopoverBody"] {
-    border-radius: 14px !important;
-    border: 1px solid rgba(128, 128, 128, 0.22) !important;
+/* Sliders (Monochrome White Thumb) */
+div[data-testid="stSlider"] div[data-baseweb="slider"] div[role="slider"] {
+    background-color: #FFFFFF !important;
+    border: 2px solid #121214 !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* --- 9. Popover & Modal Dialogs --- */
+[data-testid="stPopoverBody"],
+[data-testid="stModal"] > div {
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     padding: 20px !important;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35) !important;
-    backdrop-filter: blur(16px);
+    background: rgba(24, 24, 27, 0.98) !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Compact dropzone inside popover */
 [data-testid="stFileUploaderDropzone"] {
     padding: 14px !important;
     min-height: unset !important;
-    border-radius: 10px !important;
-    border: 1px dashed rgba(128, 128, 128, 0.25) !important;
-    background: rgba(128, 128, 128, 0.03) !important;
-    transition: all 0.2s ease !important;
+    border-radius: 8px !important;
+    border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+    background: rgba(24, 24, 27, 0.5) !important;
+    transition: all 0.15s ease !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
-    border-color: rgba(128, 128, 128, 0.45) !important;
-    background: rgba(128, 128, 128, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 
 [data-testid="stFileUploaderDropzone"] small {
     display: none !important;
 }
 
-/* --- 8. Notification Banners --- */
+/* --- 10. Notification Alerts --- */
 [data-testid="stAlert"] {
-    border-radius: 10px !important;
-    border: 1px solid rgba(128, 128, 128, 0.15) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 12px 18px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* --- 9. Responsive Mobile Breakpoints --- */
+/* --- 11. Responsive Mobile Breakpoints --- */
 @media (max-width: 768px) {
+    .metric-strip {
+        gap: 16px;
+        padding: 12px 14px;
+        margin-bottom: 16px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .metric-stat:not(:last-child) {
+        padding-right: 16px;
+    }
+
+    .metric-label {
+        font-size: 0.65rem;
+    }
+
+    .metric-value {
+        font-size: 1.15rem;
+    }
+
     .surface-card {
         padding: 16px;
         border-radius: 10px;
@@ -237,7 +517,7 @@ div[data-testid="stFormSubmitButton"] button:active,
 
     [data-testid="stTabs"] button[data-baseweb="tab"] {
         padding: 8px 12px !important;
-        font-size: 0.82rem !important;
+        font-size: 0.80rem !important;
         min-height: 40px !important;
     }
 }
