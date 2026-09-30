@@ -11,7 +11,7 @@ A clean, responsive dashboard to customize, organize, and back up application se
 ## Core Features
 
 - **Multi-Profile Management:** Create, switch, and delete isolated profiles (*Work*, *Gaming*, *Personal*) with instant visual state updates.
-- **Type-Aware Settings Controls:** Automatically selects the right input widget—sliders, toggles, color pickers, or text fields—based on setting type.
+- **Adaptive Controls:** Automatically matches each setting with the right control, including sliders, toggles, color pickers, and text fields.
 - **Client-Side Persistence:** Export settings to a local JSON file and import backups with automated schema validation and error handling (supports single profiles or complete bundles).
 - **Full CRUD Lifecycle:** Create, inspect, update, and remove settings with immediate visual feedback.
 
@@ -29,8 +29,8 @@ The application provides a self-contained environment for managing application s
 - **Language:** Python
 - **Framework:** Streamlit
 - **Testing & CI:** Pytest, GitHub Actions
-- **Styling:** Custom CSS3 (Plus Jakarta Sans, JetBrains Mono)
-- **Data Format:** JSON (Client-Side)
+- **Styling:** Custom CSS
+- **Storage:** JSON
 
 ## Running it Locally
 
