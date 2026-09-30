@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Modern Responsive Design System for Streamlit
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- 1. Global Typography & Canvas Reset --- */
+html, body, [class*="css"], [class*="st-"] {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default Streamlit input shortcut helper ("Press Enter to apply") */
+[data-testid="InputInstructions"] {
+    display: none !important;
+}
+
+/* --- 2. Surface Card Container --- */
+.surface-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(128, 128, 128, 0.16);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+}
+
+/* --- 3. Key-Value Row Items --- */
+.setting-list-container {
+    border: 1px solid rgba(128, 128, 128, 0.14);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    transition: background 0.15s ease-in-out;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-row:hover {
+    background: rgba(128, 128, 128, 0.05);
+}
+
+.setting-key {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.setting-value {
+    font-size: 0.92rem;
+    font-weight: 500;
+    opacity: 0.75;
+    background: rgba(128, 128, 128, 0.08);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* --- 4. Empty State Presentation --- */
+.empty-state-box {
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed rgba(128, 128, 128, 0.25);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.empty-state-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    opacity: 0.6;
+}
+
+.empty-state-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.empty-state-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.65;
+    margin-bottom: 16px;
+}
+
+/* --- 5. Segmented Navigation Tabs --- */
+[data-testid="stTabs"] {
+    background: rgba(128, 128, 128, 0.08);
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+[data-testid="stTabs"] button[data-baseweb="tab"] {
+    border-radius: 8px !important;
+    border: none !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
+    color: inherit !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    background: transparent !important;
+}
+
+[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
+    background: #007AFF !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3) !important;
+}
+
+/* Hide Streamlit default tab underline highlight */
+[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+    display: none !important;
+}
+
+/* --- 6. Form Controls & Buttons --- */
+div[data-testid="stTextInput"] input {
+    border-radius: 8px !important;
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+    padding: 10px 14px !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease;
+}
+
+div[data-testid="stTextInput"] input:focus {
+    border-color: #007AFF !important;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.25) !important;
+}
+
+div[data-testid="stFormSubmitButton"] button {
+    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    transition: transform 0.1s ease, background-color 0.2s ease !important;
+}
+
+div[data-testid="stFormSubmitButton"] button:active {
+    transform: scale(0.98);
+}
+
+/* --- 7. Toast & Alert Notifications --- */
+[data-testid="stAlert"] {
+    border-radius: 10px !important;
+    border: 1px solid rgba(128, 128, 128, 0.15) !important;
+    padding: 12px 18px !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* --- 8. Responsive Design & Mobile Breakpoints --- */
+@media (max-width: 768px) {
+    .surface-card {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .setting-row {
+        padding: 12px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .setting-value {
+        align-self: flex-start;
+    }
+
+    [data-testid="stTabs"] button[data-baseweb="tab"] {
+        padding: 6px 10px !important;
+        font-size: 0.82rem !important;
+    }
+}

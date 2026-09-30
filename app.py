@@ -4,46 +4,16 @@ st.set_page_config(
     page_title="Settings App", page_icon="assets/favicon.svg", layout="wide"
 )
 
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+def load_custom_css(file_path: str = "assets/style.css") -> None:
+    """Inject custom application styles from an external stylesheet."""
+    try:
+        with open(file_path, "r", encoding="utf-8") as css_file:
+            st.markdown(f"<style>{css_file.read()}</style>", unsafe_allow_html=True)
+    except FileNotFoundError:
+        pass
 
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-    }
 
-    [data-testid="InputInstructions"] {
-        display: none;
-    }
-
-    table {
-        width: 100% !important;
-        border-collapse: collapse !important;
-        font-size: 1.25rem !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.08em !important;
-    }
-
-    th, td {
-        padding: 18px 24px !important;
-        text-align: left !important;
-    }
-
-    th {
-        font-weight: 600 !important;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.25) !important;
-        background-color: rgba(255, 255, 255, 0.02) !important;
-    }
-
-    td {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        font-weight: 500 !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+load_custom_css()
 
 if "user_settings" not in st.session_state:
     st.session_state.user_settings = {"theme": "dark", "volume": "high"}
