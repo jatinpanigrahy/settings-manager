@@ -335,29 +335,37 @@ div[data-testid="stPills"] button:last-child * {
 }
 
 /* --- 8. Form Controls & Action Buttons --- */
-div[data-testid="stTextInput"] div[data-baseweb="base-input"],
-div[data-testid="stTextInput"] div[data-baseweb="input"],
+div[data-testid="stTextInput"] > div,
 div[data-testid="stSelectbox"] > div {
-    background-color: rgba(24, 24, 27, 0.8) !important;
+    background-color: #121214 !important;
     border-radius: 8px !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
     font-size: 0.95rem !important;
     color: #F4F4F5 !important;
     transition: all 0.15s ease;
 }
 
+div[data-testid="stTextInput"] [data-baseweb="base-input"],
+div[data-testid="stTextInput"] [data-baseweb="input"],
 div[data-testid="stTextInput"] input {
-    color: #F4F4F5 !important;
-    background: transparent !important;
+    background-color: transparent !important;
     border: none !important;
+    color: #F4F4F5 !important;
 }
 
-div[data-testid="stTextInput"] div[data-baseweb="input"]:focus-within,
-div[data-testid="stTextInput"] div[data-baseweb="base-input"]:focus-within,
-div[data-testid="stTextInput"] input:focus,
+div[data-testid="stTextInput"] input::placeholder {
+    color: #71717A !important;
+}
+
+div[data-testid="stTextInput"] > div:hover,
+div[data-testid="stSelectbox"] > div:hover {
+    border-color: rgba(255, 255, 255, 0.38) !important;
+}
+
+div[data-testid="stTextInput"] > div:focus-within,
 div[data-testid="stSelectbox"] > div:focus-within {
-    border-color: rgba(255, 255, 255, 0.45) !important;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) !important;
     outline: none !important;
 }
 

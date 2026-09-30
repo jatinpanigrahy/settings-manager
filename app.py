@@ -1,6 +1,6 @@
 """Settings Manager Application.
 
-A refined, responsive configuration dashboard built with Streamlit.
+A refined, responsive settings dashboard built with Streamlit.
 Provides multi-profile management, type-aware settings controls,
 and client-side JSON persistence.
 """
@@ -396,6 +396,15 @@ with col_controls:
             key="add_preset_choice",
         )
 
+        custom_control = "Slider (0-100%)"
+        if preset_choice not in templates:
+            custom_control = st.radio(
+                "Input Control Type",
+                ["Slider (0-100%)", "Toggle (On/Off)", "Color Picker", "Plain Text"],
+                horizontal=True,
+                key="add_custom_control_type",
+            )
+
         with st.form("add_setting_form", clear_on_submit=True):
             if preset_choice in templates:
                 tpl = templates[preset_choice]
@@ -424,11 +433,6 @@ with col_controls:
                     val_to_save = st.text_input("Value", value=str(tpl.get("default", "")))
             else:
                 key_input = st.text_input("Setting Name", placeholder="e.g., Keyboard Backlight")
-                custom_control = st.radio(
-                    "Input Control Type",
-                    ["Slider (0-100%)", "Toggle (On/Off)", "Color Picker", "Plain Text"],
-                    horizontal=True,
-                )
 
                 if custom_control == "Slider (0-100%)":
                     slider_val = st.slider("Value", 0, 100, 50, step=5, format="%d%%")
